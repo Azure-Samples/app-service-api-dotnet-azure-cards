@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="AzureCards.WindowsStoreApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AzureCards.WindowsStoreApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <local:CardDatabinderConverter x:Key="_cardConverter"/>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="59"/>
+            <RowDefinition/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock TextWrapping="Wrap" Text="AzureCards" FontSize="48" Grid.Row="0" HorizontalAlignment="Center"/>
+
+        <ItemsControl ItemsSource="{Binding Cards}" HorizontalAlignment="Center" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Converter={StaticResource _cardConverter}}" MaxWidth="250" Margin="10,10,0,0"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Grid Grid.Row="2">
+            <TextBlock TextWrapping="Wrap" Text="Deal" FontSize="36" HorizontalAlignment="Center" Tapped="DealTapped"/>
+        </Grid>
+    </Grid>
+    
+</Page>

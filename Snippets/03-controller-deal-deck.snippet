@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>demo03-controller-deal-deck</Title>
+			<Shortcut>demo03-controller-deal-deck</Shortcut>
+			<Description></Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="csharp">
+        <![CDATA[[HttpGet]
+        [ResponseType(typeof(DealResponseMessage))]
+        [Route("deck/{deckId}/deal/{cardCount}")]
+        public async Task<HttpResponseMessage> Deal(string deckId, int cardCount)
+        {
+            var deck = await _deckStorage.GetById(deckId);
+
+            // if the deck's already been played return a not found
+            if (deck.RemainingCards.Count == 0)
+                return new HttpResponseMessage { StatusCode = HttpStatusCode.NotFound };
+
+            // make sure we don't take more than we have
+            if (deck.RemainingCards.Count < cardCount)
+                cardCount = deck.RemainingCards.Count;
+
+            // remove the cards we'll return from the remaining
+            var deal = deck.RemainingCards.Take(cardCount).ToList();
+            deck.RemainingCards.RemoveRange(0, cardCount);
+
+            // update the deck
+            await _deckStorage.Save(deckId, deck);
+
+            // respond with the content
+            var response = Request.CreateResponse<DealResponseMessage>(new DealResponseMessage
+                {
+                    Cards = deal
+                });
+
+            response.StatusCode = deal.Count() > 0 ? HttpStatusCode.OK : HttpStatusCode.NotFound;
+            return response;
+        }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

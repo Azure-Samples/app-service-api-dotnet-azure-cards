@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        body {
+            margin-top: 60px;
+            font-family: 'Segoe UI';
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Segoe UI Light';
+        }
+
+        .card {
+            margin: 5px;
+            display: inline-block;
+        }
+
+            .card img {
+                max-width: 200px;
+                box-shadow: 5px 5px 5px #808080;
+            }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" target="_blank" href="http://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/">Azure API Apps</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">AzureCards HTML Client</a></li>
+                    <li><a href="https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net/swagger">Swagger UI</a></li>
+                    <li><a href="https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net/swagger/docs/v1">Swagger JSON</a></li>
+                    <li><a href="https://github.com/bradygaster/azurecards">AzureCards on GitHub</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container" ng-app="azureCardsApp" ng-controller="azureCardsCtrlr" style="text-align: center;">
+        <div class="row"><h3>API Status: {{status}}</h3></div>
+        <div class="row">
+            <button class="btn btn-primary" ng-click="newDeck()" ng-disabled="deckId != ''">New Deck</button>
+            <button class="btn btn-primary" ng-click="shuffle()" ng-disabled="deckId == ''">Shuffle</button>
+            <button class="btn btn-primary" ng-click="deal()" ng-disabled="deckId == ''">Deal</button>
+        </div>
+        <div class="row">
+            <div ng-repeat="c in cards" class="card" />
+                <img ng-src="/content/img/{{c.Face}}_of_{{c.Suit}}.png" >
+            </div>
+        </div>
+    </div>
+
+    <script src="Scripts/angular.js"></script>
+    <script type="text/javascript">
+        angular.module('azureCardsApp', []).controller('azureCardsCtrlr', function ($scope, $http) {
+            $scope.dealCount = 5;
+            $scope.deckId = '';
+            $scope.status = 'Ready';
+            $scope.newDeck = function () {
+                $scope.status = 'Creating a deck';
+                $scope.cards = null;
+                $http({
+                    method: 'GET',
+                    url: 'https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net/deck/new',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                    $scope.deckId = data;
+                    $scope.status = 'Deck created';
+                });
+            };
+            $scope.shuffle = function () {
+                $scope.status = 'Shuffling the deck';
+                $http({
+                    method: 'GET',
+                    url: 'https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net/deck/' + $scope.deckId + '/shuffle',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                    $scope.status = 'Deck shuffled';
+                });
+            };
+            $scope.deal = function () {
+                $scope.status = 'Dealing...';
+                $http({
+                    method: 'GET',
+                    url: 'https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net/deck/' + $scope.deckId + '/deal/' + $scope.dealCount,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                    if (data.Cards.length < $scope.dealCount) {
+                        $scope.deckId = '';
+                    }
+                    $scope.cards = data.Cards;
+                    $scope.status = 'Cards dealt';
+                }).error(function () {
+                    $scope.newDeck();
+                    for (var i = 0; i < 10; i++) {
+                        $scope.shuffle();
+                    }
+                    $scope.deal();
+                });
+            };
+        });
+    </script>
+
+</body>
+</html>

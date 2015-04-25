@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>demo04-setup-windows-app</Title>
+			<Shortcut>demo04-setup-windows-app</Shortcut>
+			<Description></Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Code Language="csharp">
+        <![CDATA[private const string GATEWAY = "$end$YOUR GATEWAY HERE";
+        private const string API_APP = "YOUR API APP URL HERE";
+
+        private IAppServiceClient _appServiceClient;
+        private IAzureCardsClient _azureCards;
+        private string _deckId;
+        private const string AUTH_PROVIDER = "twitter";
+
+        public MainPageViewModel ViewModel
+        {
+            get { return this.DataContext as MainPageViewModel; }
+            set { this.DataContext = value; }
+        }]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
