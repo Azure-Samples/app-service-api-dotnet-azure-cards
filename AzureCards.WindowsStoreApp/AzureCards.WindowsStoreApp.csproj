@@ -105,8 +105,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AzureCards\AppServiceExtensions.cs" />
     <Compile Include="AzureCards\AzureCardsClient.cs" />
-    <Compile Include="AzureCards\AzureCardsClientAppServiceExtensions.cs" />
     <Compile Include="AzureCards\AzureCardsClientExtensions.cs" />
     <Compile Include="AzureCards\Deck.cs" />
     <Compile Include="AzureCards\DeckExtensions.cs" />
