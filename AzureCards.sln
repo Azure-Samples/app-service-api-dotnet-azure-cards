@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureCards.WebApp", "AzureC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureCards.DesktopClient", "AzureCards.DesktopClient\AzureCards.DesktopClient.csproj", "{6B89D9C1-BDDE-4945-9578-189F964B203A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureCards.ConsoleClient", "AzureCards.ConsoleClient\AzureCards.ConsoleClient.csproj", "{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,16 @@ Global
 		{6B89D9C1-BDDE-4945-9578-189F964B203A}.Release|ARM.ActiveCfg = Release|Any CPU
 		{6B89D9C1-BDDE-4945-9578-189F964B203A}.Release|x64.ActiveCfg = Release|Any CPU
 		{6B89D9C1-BDDE-4945-9578-189F964B203A}.Release|x86.ActiveCfg = Release|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Release|x64.ActiveCfg = Release|Any CPU
+		{0B8FBCB4-1359-4559-B2FD-8DAEA119B62F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
