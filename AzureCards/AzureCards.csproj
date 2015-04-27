@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apiapp.json" />
+    <None Include="Properties\PublishProfiles\AzureCards%28azurecards%29.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

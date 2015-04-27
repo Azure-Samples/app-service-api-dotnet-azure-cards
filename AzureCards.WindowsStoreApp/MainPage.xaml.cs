@@ -8,8 +8,8 @@ namespace AzureCards.WindowsStoreApp
     public sealed partial class MainPage : Page
     {
         // todo: setup the page
-        private const string GATEWAY = "https://azurecards66c15fe52d0b446c920739d03a993afa.azurewebsites.net/";
-        private const string API_APP = "https://microsoft-apiapp112547a7ae324985a39a00dfd665a1dd.azurewebsites.net/";
+        private const string GATEWAY = "https://azurecardscfcb436d21d347cfb4937af5bd76cf5b.azurewebsites.net/";
+        private const string API_APP = "https://microsoft-apiappc2cbb4399a2e4950aea4c4ca04232898.azurewebsites.net/";
 
         private IAppServiceClient _appServiceClient;
         private IAzureCardsClient _azureCards;
@@ -51,7 +51,7 @@ namespace AzureCards.WindowsStoreApp
         {
             await AuthenticateAsync();
 
-            _azureCards = _appServiceClient.Create(
+            _azureCards = _appServiceClient.CreateAzureCardsClient(
                 new Uri(API_APP),
                 new TokenExpiredHandler(AuthenticateAsync)
                 );
