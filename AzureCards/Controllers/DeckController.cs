@@ -22,7 +22,7 @@ namespace Cards.Controllers
             _deckStorage = new DeckIsolatedStorage();
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("deck/new")]
         public async Task<string> New()
         {
