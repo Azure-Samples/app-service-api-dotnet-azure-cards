@@ -64,7 +64,7 @@
     <script src="Scripts/angular.js"></script>
     <script type="text/javascript">
         angular.module('azureCardsApp', []).controller('azureCardsCtrlr', function ($scope, $http) {
-            $scope.baseUri = 'https://microsoft-apiappf7078dfb7d3a4b049f4bbd030d24e0e3.azurewebsites.net';
+            $scope.baseUri = 'https://microsoft-apiapp0aeeb099f6f34ae393b89a5c716b8366.azurewebsites.net';
             $scope.dealCount = 5;
             $scope.deckId = '';
             $scope.status = 'Ready';
@@ -72,7 +72,7 @@
                 $scope.status = 'Creating a deck';
                 $scope.cards = null;
                 $http({
-                    method: 'GET',
+                    method: 'POST',
                     url: $scope.baseUri + '/deck/new',
                     headers: {
                         'Content-Type': 'application/json'

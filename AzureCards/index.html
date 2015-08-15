@@ -73,7 +73,7 @@
                 $scope.status = 'Creating a deck';
                 $scope.cards = null;
                 $http({
-                    method: 'GET',
+                    method: 'POST',
                     url: '/deck/new',
                     headers: {
                         'Content-Type': 'application/json'
