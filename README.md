@@ -4,7 +4,7 @@ platforms: dotnet
 author: bradygaster
 ---
 
-# app-service-api-dotnet-azure-cards
+# Azure Cards
 Sample card deck API demonstrating API Apps
 
 This is a simple example of how to build an [API App](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/ "What are API Apps?") for deployment into the Azure App Service. This example API App uses a Web API back end and a simple HTML/AngularJS client to communicate with the API. 
