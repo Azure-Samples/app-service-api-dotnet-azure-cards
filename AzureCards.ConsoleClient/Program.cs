@@ -11,7 +11,7 @@ namespace AzureCards.ConsoleClient
 {
     class Program
     {
-        private const string GW_URL = "http://devintersectionseu66c15fe52d0b446c920739d03a993afa.azurewebsites.net";
+        private const string GW_URL = "http://devintersectionseu66c15fe52d0b446c920739d03a993afa.azurewebsites.net/";
         private const string URL_TOKEN = "#token=";
 
         [STAThread]
@@ -40,6 +40,8 @@ namespace AzureCards.ConsoleClient
         private static void AuthorizeClient(AppServiceClient appServiceClient)
         {
             Form frm = new Form();
+            frm.Width = 640;
+            frm.Height = 480;
 
             WebBrowser browser = new WebBrowser();
             browser.Dock = DockStyle.Fill;
